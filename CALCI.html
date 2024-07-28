@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        /*using css for designing in calculator*/
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .display {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: right;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .operator {
+            background-color: #ff5733;
+        }
+
+        .operator:hover {
+            background-color: #d9534f;
+        }
+
+        .clear {
+            background-color: #dc3545;
+        }
+
+        .clear:hover {
+            background-color: #c82333;
+        }
+
+        .equal {
+            background-color: #28a745;
+        }
+
+        .equal:hover {
+            background-color: #218838;
+        }
+        /*using css for designing in calculator*/
+    </style>
+
+</head>
+<body>
+    <!--using html to create a calculator-->
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="buttons">
+            <button class="clear">C</button>
+            <button class="operator">/</button>
+            <button class="operator">*</button>
+            <button class="operator">-</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">+</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="equal">=</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>.</button>
+            <button>0</button>
+        </div>
+    </div>
+    <!--using html to create a calculator-->
+    <script>
+        const display = document.querySelector('.display');
+        const buttons = document.querySelectorAll('button');
+
+        let currentInput = '0';
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const buttonValue = button.textContent;
+
+                if (buttonValue === '=') {
+                    try {
+                        currentInput = eval(currentInput).toString();
+                    } catch (error) {
+                        currentInput = 'Error';
+                    }
+                } else if (buttonValue === 'C') {
+                    currentInput = '0';
+                } else {
+                    if (currentInput === '0') {
+                        currentInput = buttonValue;
+                    } else {
+                        currentInput += buttonValue;
+                    }
+                }
+
+                display.textContent = currentInput;
+            });
+        }); 
+    </script>
+</body>
+</html>
